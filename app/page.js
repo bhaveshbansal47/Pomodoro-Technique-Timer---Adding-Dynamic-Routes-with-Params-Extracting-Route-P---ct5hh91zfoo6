@@ -15,8 +15,11 @@ const App = () => {
       setCurrentTime((prevCurrentTime) => {
         console.log(prevCurrentTime)
         if (prevCurrentTime.minute === 0 && prevCurrentTime.second === 0) {
-          
-          setIsWorkTime((prev) => !prev);
+          let isWorkTimeNew = isWorkTimeNew || isWorkTime
+          setIsWorkTime((prev) => {
+            isWorkTimeNew = prev
+            return !prev
+          });
           alert(`${isWorkTime ? "work" : "break"} is over`);
           return {
             minute: (isWorkTime ? breakTimeRef : workTimeRef).current.value,
